@@ -1,24 +1,41 @@
 import logo from './logo.svg';
 import './App.css';
+import {useSelector} from 'react-redux';
+
+
+import Home from './components/Home';
+import Dashboard from './components/Dashboard';
+import LoginForm from './components/LoginForm';
+
+
+// steps - 
+// list of registered users - 
+// login form - email, pass
+// once logged in, redirect him to the dashboard
+// if not logged in, redirect him to the home page
+
+// requirements-
+// logged in user information should be saved in redux
+
+
+
 
 function App() {
+
+  const loggedInUser = useSelector((state) => {
+    return state.loggedInUser
+  })
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      {loggedInUser ? 
+      
+      <Dashboard /> : 
+      
+      <> <Home />
+        <LoginForm />
+      </>}
+    </>
   );
 }
 
