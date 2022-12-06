@@ -1,12 +1,14 @@
 import React, {useState} from 'react';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import usersData from '../database/allUsers';
-
+// import AUTH_ACTION_TYPES from '../store/actions/action';
 
 const Login = () => {
-
+    const mobile = useSelector((state) => {
+        return state.mobile
+    })
     const [loginData, setLoginData] = useState({}); 
-    const dispatch = useDispatch();
+    const dispatching = useDispatch();
 
     const handleLogin = (e) => {
         e.preventDefault();
@@ -24,13 +26,13 @@ const Login = () => {
         if (result[0]){
             // email id and password is correct
             let information_or_action = {
-                "type": "SET_LOGIN_DATA",
+                "type": "LOGIN",
                 "payload": {
                     ...result[0]
                 }
             }
 
-            dispatch(information_or_action)
+            dispatching(information_or_action)
         } else {
             // incorrect
             alert("Failed to Login")
