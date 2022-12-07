@@ -23,27 +23,26 @@ import Counter from './components/Counter';
 
 function App() {
 
-  // const loggedInUser = useSelector((state) => {
-  //   return state.loggedInUser
-  // })
+  const loggedInUser = useSelector((state) => {
+    return state.auth.loggedInUser
+  })
 
   return (
     <>
+      {loggedInUser ? 
+      
+      <Dashboard /> : 
+      
+      <> <Home />
+        <LoginForm />
+      </>}
+
+      <p>
+        ----------------------------------------------------------
+      </p>
       <Counter />
     </>
-  )
-
-  // return (
-  //   <>
-  //     {loggedInUser ? 
-      
-  //     <Dashboard /> : 
-      
-  //     <> <Home />
-  //       <LoginForm />
-  //     </>}
-  //   </>
-  // );
+  );
 }
 
 export default App;

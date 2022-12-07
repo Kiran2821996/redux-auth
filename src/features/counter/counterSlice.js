@@ -9,8 +9,8 @@ const initialState = {
 //     name: "auth",
 //     initialState: initialState,
 //     reducers: {
-//         'login': (a, b) => { return a + b },
-//         'logout': (a, b) => { return a - b }
+//         'add': (a, b) => { return a + b },
+//         'sub': (a, b) => { return a - b }
 //     }
 // }
 
@@ -35,10 +35,16 @@ export const counterSlice = createSlice({
       state.value -= 1
     },
     incrementByAmount: (state, action) => {
+        console.log(action)
       state.value += action.payload
     },
   },
 })
+
+// counterSlice = {
+//     'actions': something,
+//     'reducer': something else
+// }
 
 // Action creators are generated for each case reducer function
 export const { incrementing, decrement, incrementByAmount } = counterSlice.actions
