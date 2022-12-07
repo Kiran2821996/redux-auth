@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import usersData from '../database/allUsers';
 // import AUTH_ACTION_TYPES from '../store/actions/action';
+import { authActions } from '../features/counter/authSlice';
 
 const Login = () => {
     const mobile = useSelector((state) => {
@@ -25,14 +26,15 @@ const Login = () => {
 
         if (result[0]){
             // email id and password is correct
-            let information_or_action = {
-                "type": "LOGIN",
-                "payload": {
-                    ...result[0]
-                }
-            }
+            // let information_or_action = {
+            //     "type": "LOGIN",
+            //     "payload": {
+            //         ...result[0]
+            //     }
+            // }
 
-            dispatching(information_or_action)
+            // dispatching(information_or_action)
+            dispatching(authActions.login({...result[0]}))
         } else {
             // incorrect
             alert("Failed to Login")
